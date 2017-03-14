@@ -2,6 +2,7 @@ package com.gdqt.dao;
 
 import com.gdqt.entity.User;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,9 @@ import java.util.Map;
 public interface UserDao {
     User findUserByEmail(@Param("email") String email);
 
-    User findUserById(@Param("id") int id);
+
+    @Select("SELECT * FROM tbl_user WHERE id = #{id}")
+    User findUserById(int id);
 
     User findUserByName(@Param("username")String username);
 
